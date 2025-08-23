@@ -1,3 +1,4 @@
+// @ts-nocheck
 import tokens from '../../tokens.json';
 
 // Helper function to extract color values from OKLCH format

@@ -1,4 +1,4 @@
-import React from 'react';
+//
 import Wrapper from '@/components/wrapper';
 import { ButtonV2 } from './ui/button-v2';
 import { FigmaButton } from './ui/figma-button';
