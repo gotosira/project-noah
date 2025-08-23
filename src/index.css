@@ -1,0 +1,90 @@
+@import './lib/fonts.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    /* Accessible palette based on Tailwind blue/emerald */
+    --primary: 217 91% 60%; /* blue-500 */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 160 84% 39%; /* emerald-500 */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 215 25% 27%;
+
+    --accent: 217 33% 97%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: var(--primary);
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222 47% 8%; /* slate-900 */
+    --foreground: 0 0% 98%;
+
+    --card: 222 47% 12%; /* slightly lighter than bg for contrast */
+    --card-foreground: 0 0% 98%;
+
+    --popover: 222 47% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 217 91% 60%; /* blue-500 */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 160 84% 39%; /* emerald-500 */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 215 16% 22%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 33% 20%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 215 28% 25%;
+    --input: 215 28% 25%;
+    --ring: var(--primary);
+  }
+}
+
+@layer base {
+  * {
+    @apply m-0 p-0 border-border;
+  }
+
+  html,
+  body,
+  :root {
+    @apply w-full h-full;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  #root {
+    @apply w-full h-full flex flex-col;
+  }
+}

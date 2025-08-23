@@ -1,0 +1,26 @@
+import 'dotenv/config'
+import fetch, { Headers, Request, Response } from 'node-fetch'
+import { createClient } from '@supabase/supabase-js'
+
+globalThis.fetch = fetch
+// @ts-ignore
+globalThis.Headers = Headers
+// @ts-ignore
+globalThis.Request = Request
+// @ts-ignore
+globalThis.Response = Response
+
+const url = process.env.VITE_SUPABASE_URL
+const anonKey = process.env.VITE_SUPABASE_ANON_KEY
+if (!url || !anonKey) {
+  console.error('Missing env')
+  process.exit(1)
+}
+const supabase = createClient(url, anonKey)
+
+const email = process.argv[2]
+const password = process.argv[3]
+
+const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+console.log('data:', JSON.stringify(data, null, 2))
+console.log('error:', error?.message || error)

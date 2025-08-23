@@ -1,0 +1,20 @@
+/* Import fonts for design tokens */
+
+/* Aktiv Grotesk Thai - You'll need to add the actual font files or CDN links */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Sarabun - Thai font */
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
+
+/* Fallback font families */
+@font-face {
+  font-family: 'Aktiv Grotesk Thai';
+  src: local('Inter'), local('Arial'), local('sans-serif');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sarabun';
+  src: local('Sarabun'), local('Arial'), local('sans-serif');
+  font-display: swap;
+}
