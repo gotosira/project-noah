@@ -14,7 +14,7 @@ import ProtectedRoute from "@/components/protected-route";
 function App() {
   return (
     <Providers>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Navbar />
         <Suspense fallback={<div className="p-4">Loading...</div>}>
         <Routes>

@@ -3,10 +3,10 @@ import { defineConfig, splitVendorChunkPlugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [react(), splitVendorChunkPlugin()],
-  // Set base for GitHub Pages (user/organization pages don't need this; project pages do)
-  base: '/project-noah/',
+  // Use project base only for production (Pages). Keep dev at '/'.
+  base: mode === 'production' ? '/project-noah/' : '/',
   build: {
     sourcemap: false,
     cssMinify: true,
@@ -36,4 +36,4 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-});
+}));
