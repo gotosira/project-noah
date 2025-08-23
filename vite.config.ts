@@ -5,6 +5,8 @@ import react from "@vitejs/plugin-react-swc";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), splitVendorChunkPlugin()],
+  // Set base for GitHub Pages (user/organization pages don't need this; project pages do)
+  base: '/project-noah/',
   build: {
     sourcemap: false,
     cssMinify: true,
