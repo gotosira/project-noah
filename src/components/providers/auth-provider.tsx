@@ -76,11 +76,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     password: string
   ): Promise<{ success: boolean; message?: string }> => {
     try {
+      const base = ((import.meta as any)?.env?.BASE_URL as string) || "/";
+      const redirectBase = new URL(base, window.location.origin).toString();
       const { error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth`,
+          emailRedirectTo: `${redirectBase}auth`,
         },
       });
 
@@ -164,10 +166,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     login,
     signup,
     loginWithGoogle: async () => {
+      const base = ((import.meta as any)?.env?.BASE_URL as string) || "/";
+      const redirectBase = new URL(base, window.location.origin).toString();
       await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/auth`,
+          redirectTo: `${redirectBase}auth`,
           queryParams: {
             access_type: 'offline',
             prompt: 'consent',
