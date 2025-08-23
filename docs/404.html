@@ -6,9 +6,9 @@
     <script>
       (function() {
         var l = window.location;
-        // Compute project base: "/<user>/<repo>/"
         var parts = l.pathname.split('/');
-        var base = parts.slice(0, 3).join('/') + '/';
+        // For project pages like /project-noah/... redirect to /project-noah/index.html
+        var base = '/' + (parts[1] || '') + '/';
         var target = base + 'index.html' + (l.search || '') + (l.hash || '');
         l.replace(target);
       })();

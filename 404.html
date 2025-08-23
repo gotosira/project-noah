@@ -6,7 +6,7 @@
       (function() {
         var l = window.location;
         var parts = l.pathname.split('/');
-        var base = parts.slice(0, 3).join('/') + '/';
+        var base = '/' + (parts[1] || '') + '/';
         var target = base + 'index.html' + (l.search || '') + (l.hash || '');
         l.replace(target);
       })();
