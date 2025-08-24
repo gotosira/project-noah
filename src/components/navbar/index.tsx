@@ -1,7 +1,7 @@
 import NavLinks from "./nav-links";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useAuth } from "@/components/providers/auth-provider";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +12,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import H4 from "@/components/typo/H4";
-import { LogOut, User } from "lucide-react";
+import { Link } from "react-router-dom";
+import { User } from "lucide-react";
 
 const navbar = () => {
   const { isAuthenticated, user, logout } = useAuth();
@@ -23,7 +24,9 @@ const navbar = () => {
 
   return (
     <header className="fixed top-0 overflow-hidden w-full flex items-center justify-between px-4 h-16 z-10 backdrop-blur bg-background/70 border-b border-border">
-      <H4 className="text-foreground font-sarabun">Project Noah</H4>
+      <Link to={isAuthenticated ? "/" : "/welcome"}>
+        <H4 className="text-foreground font-sarabun">Project Noah</H4>
+      </Link>
       <div className="flex items-center justify-center gap-4">
         {isAuthenticated && <NavLinks />}
         
@@ -36,22 +39,15 @@ const navbar = () => {
             <DropdownMenuContent align="end">
               <DropdownMenuLabel className="font-sarabun">Signed in</DropdownMenuLabel>
               <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <Link to="/profile">Profile</Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleLogout}>Sign out</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         )}
         
-        {isAuthenticated && (
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleLogout}
-            className="flex items-center gap-2"
-          >
-            <LogOut className="h-4 w-4" />
-            Logout
-          </Button>
-        )}
         <ThemeToggle />
       </div>
     </header>
