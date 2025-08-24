@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Canonicalize: remove trailing /index.html so OAuth returns land at /project-noah/
+      (function () {
+        var p = location.pathname;
+        if (/\/index\.html$/.test(p)) {
+          var clean = p.replace(/index\.html$/, '');
+          location.replace(clean + (location.search || '') + (location.hash || ''));
+        }
+      })();
+    </script>
     <!-- Performance hints for Supabase -->
     <link rel="dns-prefetch" href="https://pjugjcckydxkwgbuyhdv.supabase.co" />
     <link rel="preconnect" href="https://pjugjcckydxkwgbuyhdv.supabase.co" crossorigin />
