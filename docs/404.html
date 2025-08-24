@@ -6,9 +6,7 @@
     <script>
       (function() {
         var l = window.location;
-        var parts = l.pathname.split('/');
-        // For project pages like /project-noah/... redirect to /project-noah/index.html
-        var base = '/' + (parts[1] || '') + '/';
+        var base = '/project-noah/';
         var target = base + 'index.html' + (l.search || '') + (l.hash || '');
         l.replace(target);
       })();
