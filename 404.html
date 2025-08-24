@@ -5,9 +5,8 @@
     <script>
       (function() {
         var l = window.location;
-        // Force redirect to the repo path on the user domain
         var base = '/project-noah/';
-        var target = base + 'index.html' + (l.search || '') + (l.hash || '');
+        var target = base + (l.search || '') + (l.hash || '');
         l.replace(target);
       })();
     </script>

@@ -7,7 +7,7 @@
       (function() {
         var l = window.location;
         var base = '/project-noah/';
-        var target = base + 'index.html' + (l.search || '') + (l.hash || '');
+        var target = base + (l.search || '') + (l.hash || '');
         l.replace(target);
       })();
     </script>
