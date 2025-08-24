@@ -82,7 +82,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         email,
         password,
         options: {
-          emailRedirectTo: `${redirectBase}auth`,
+          // Redirect to app root; supabase-js will process the hash on any route
+          emailRedirectTo: `${redirectBase}`,
         },
       });
 
@@ -171,7 +172,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${redirectBase}auth`,
+          redirectTo: `${redirectBase}`,
           queryParams: {
             access_type: 'offline',
             prompt: 'consent',
