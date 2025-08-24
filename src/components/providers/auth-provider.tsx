@@ -77,7 +77,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   ): Promise<{ success: boolean; message?: string }> => {
     try {
       const base = ((import.meta as any)?.env?.BASE_URL as string) || "/";
-      const redirectBase = new URL(base, window.location.origin).toString();
+      const canonicalBase = base.replace(/\/$/, "");
+      const redirectBase = new URL(canonicalBase, window.location.origin).toString();
       const { error } = await supabase.auth.signUp({
         email,
         password,
@@ -136,7 +137,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         // Clean the OAuth hash once processed
         if (typeof window !== 'undefined' && window.location.hash.includes('access_token')) {
           const base = ((import.meta as any)?.env?.BASE_URL as string) || '/';
-          const cleanUrl = new URL(base, window.location.origin).toString();
+          const canonicalBase = base.replace(/\/$/, '');
+          const cleanUrl = new URL(canonicalBase, window.location.origin).toString();
           window.history.replaceState(window.history.state, '', cleanUrl);
         }
       }
@@ -174,7 +176,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     signup,
     loginWithGoogle: async () => {
       const base = ((import.meta as any)?.env?.BASE_URL as string) || "/";
-      const redirectBase = new URL(base, window.location.origin).toString();
+      const canonicalBase = base.replace(/\/$/, "");
+      const redirectBase = new URL(canonicalBase, window.location.origin).toString();
       await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {

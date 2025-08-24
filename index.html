@@ -5,13 +5,17 @@
     <link rel="icon" type="image/svg+xml" href="logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
-      // Canonicalize: remove trailing /index.html so OAuth returns land at /project-noah/
+      // Canonicalize: remove trailing /index.html so OAuth returns land at /project-noah
       (function () {
-        var p = location.pathname;
-        if (/\/index\.html$/.test(p)) {
-          var clean = p.replace(/index\.html$/, '');
-          location.replace(clean + (location.search || '') + (location.hash || ''));
-        }
+        try {
+          var p = location.pathname;
+          if (/\/index\.html$/.test(p)) {
+            var clean = p.replace(/index\.html$/, '');
+            // If clean ends with a slash, trim it to ensure /project-noah not /project-noah/
+            if (clean.length > 1 && /\/$/.test(clean)) clean = clean.slice(0, -1);
+            location.replace(clean + (location.search || '') + (location.hash || ''));
+          }
+        } catch (e) {}
       })();
     </script>
     <!-- Performance hints for Supabase -->
