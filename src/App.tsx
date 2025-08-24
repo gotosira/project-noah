@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Suspense, lazy } from "react";
 
 const Home = lazy(() => import("@/pages/Home"));
@@ -16,10 +16,12 @@ import ProtectedRoute from "@/components/protected-route";
 function App() {
   return (
     <Providers>
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <BrowserRouter basename={(import.meta.env.BASE_URL as string)?.replace(/\/$/, "")}>
         <Navbar />
         <Suspense fallback={<div className="p-4">Loading...</div>}>
         <Routes>
+          {/* Ensure /index.html redirects to root immediately */}
+          <Route path="/index.html" element={<Navigate to="/" replace />} />
           <Route path="/welcome" element={<Welcome />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/" element={<Home />} />

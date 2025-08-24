@@ -11,8 +11,8 @@
           var p = location.pathname;
           if (/\/index\.html$/.test(p)) {
             var clean = p.replace(/index\.html$/, '');
-            // If clean ends with a slash, trim it to ensure /project-noah not /project-noah/
-            if (clean.length > 1 && /\/$/.test(clean)) clean = clean.slice(0, -1);
+            // Keep trailing slash for dev root only; on Pages we keep subpath without trailing slash
+            if (clean !== '/' && /\/$/.test(clean)) clean = clean.slice(0, -1);
             location.replace(clean + (location.search || '') + (location.hash || ''));
           }
         } catch (e) {}
