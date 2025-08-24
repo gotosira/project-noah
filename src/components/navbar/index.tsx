@@ -2,6 +2,14 @@ import NavLinks from "./nav-links";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useAuth } from "@/components/providers/auth-provider";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 import H4 from "@/components/typo/H4";
 import { LogOut, User } from "lucide-react";
@@ -20,10 +28,17 @@ const navbar = () => {
         {isAuthenticated && <NavLinks />}
         
         {isAuthenticated && user && (
-          <div className="flex items-center gap-2 text-sm font-sarabun text-muted-foreground">
-            <User className="h-4 w-4 text-muted-foreground" />
-            <span>{user.name}</span>
-          </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="inline-flex items-center gap-2 text-sm font-sarabun text-muted-foreground border rounded-radii-4xs px-2 py-1">
+              <User className="h-4 w-4 text-muted-foreground" />
+              <span>{user.name}</span>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel className="font-sarabun">Signed in</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={handleLogout}>Sign out</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         )}
         
         {isAuthenticated && (
